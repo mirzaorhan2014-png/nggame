@@ -4,6 +4,7 @@ const http = require('http');
 const socketIO = require('socket.io');
 const cors = require('cors');
 const connectDB = require('./config/db');
+const { apiLimiter } = require('./middleware/rateLimiter');
 
 // Initialize app
 const app = express();
@@ -22,6 +23,9 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Apply rate limiting to all API routes
+app.use('/api/', apiLimiter);
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));

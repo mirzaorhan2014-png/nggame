@@ -20,6 +20,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express-validator": "^7.0.1",
+    "express-rate-limit": "^6.7.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

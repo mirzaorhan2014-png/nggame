@@ -3,11 +3,12 @@ const router = express.Router();
 const User = require('../models/User');
 const generateToken = require('../utils/generateToken');
 const { protect } = require('../middleware/auth');
+const { authLimiter } = require('../middleware/rateLimiter');
 
 // @route   POST /api/auth/register
 // @desc    Register new user
 // @access  Public
-router.post('/register', async (req, res) => {
+router.post('/register', authLimiter, async (req, res) => {
   try {
     const { username, email, password, country } = req.body;
 
@@ -53,7 +54,7 @@ router.post('/register', async (req, res) => {
 // @route   POST /api/auth/login
 // @desc    Login user
 // @access  Public
-router.post('/login', async (req, res) => {
+router.post('/login', authLimiter, async (req, res) => {
   try {
     const { username, password } = req.body;
 
@@ -94,7 +95,8 @@ router.post('/login', async (req, res) => {
 // @access  Public
 router.post('/guest', async (req, res) => {
   try {
-    const guestId = 'guest_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    const { v4: uuidv4 } = require('uuid');
+    const guestId = `guest_${Date.now()}_${uuidv4().substring(0, 8)}`;
     
     res.json({
       _id: guestId,

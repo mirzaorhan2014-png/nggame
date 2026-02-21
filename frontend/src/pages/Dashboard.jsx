@@ -6,6 +6,18 @@ import './Dashboard.css';
 const Dashboard = () => {
   const { user, logout } = useAuth();
 
+  /**
+   * Calculate rank progress percentage within current tier
+   * Each tier requires 300 RP to advance (except Legend which is max)
+   * Returns percentage (0-100) of progress towards next tier
+   */
+  const getRankProgressPercentage = (points) => {
+    if (!points) return 0;
+    const RP_PER_TIER = 300;
+    const progressInTier = points % RP_PER_TIER;
+    return Math.min((progressInTier / RP_PER_TIER) * 100, 100);
+  };
+
   return (
     <div className="dashboard">
       <nav className="navbar glass">
@@ -107,7 +119,7 @@ const Dashboard = () => {
                 <div className="progress-bar">
                   <div 
                     className="progress-fill" 
-                    style={{ width: `${Math.min((user?.rank?.points % 300) / 3, 100)}%` }}
+                    style={{ width: `${getRankProgressPercentage(user?.rank?.points)}%` }}
                   ></div>
                 </div>
               </div>

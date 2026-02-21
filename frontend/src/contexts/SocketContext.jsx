@@ -12,6 +12,8 @@ export const useSocket = () => {
   return context;
 };
 
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
+
 export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const [connected, setConnected] = useState(false);
@@ -19,7 +21,7 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     if (user && !user.isGuest) {
-      const newSocket = io('http://localhost:5000');
+      const newSocket = io(SOCKET_URL);
       
       newSocket.on('connect', () => {
         setConnected(true);

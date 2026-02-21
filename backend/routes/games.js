@@ -3,11 +3,12 @@ const router = express.Router();
 const GameScore = require('../models/GameScore');
 const User = require('../models/User');
 const { protect, optional } = require('../middleware/auth');
+const { scoreLimiter } = require('../middleware/rateLimiter');
 
 // @route   POST /api/games/score
 // @desc    Submit game score
 // @access  Private
-router.post('/score', protect, async (req, res) => {
+router.post('/score', protect, scoreLimiter, async (req, res) => {
   try {
     const { gameId, gameName, score, kills, deaths, isWin, mode } = req.body;
 
@@ -15,17 +16,24 @@ router.post('/score', protect, async (req, res) => {
       return res.status(400).json({ message: 'Missing required fields' });
     }
 
+    // RP calculation constants
+    const RP_WIN_BASE = 25;
+    const RP_WIN_BONUS_DIVISOR = 100;
+    const RP_LOSS_PENALTY = -15;
+
     // Calculate RP change
     let rpChange = 0;
     if (isWin) {
-      rpChange = 25 + Math.floor(score / 100);
+      rpChange = RP_WIN_BASE + Math.floor(score / RP_WIN_BONUS_DIVISOR);
     } else {
-      rpChange = -15;
+      rpChange = RP_LOSS_PENALTY;
     }
 
     // Calculate coins earned
-    let coinsEarned = Math.floor(score / 10);
-    if (isWin) coinsEarned += 50;
+    const COINS_PER_SCORE_DIVISOR = 10;
+    const COINS_WIN_BONUS = 50;
+    let coinsEarned = Math.floor(score / COINS_PER_SCORE_DIVISOR);
+    if (isWin) coinsEarned += COINS_WIN_BONUS;
 
     // Get current season
     const currentSeason = 1; // TODO: Implement season management

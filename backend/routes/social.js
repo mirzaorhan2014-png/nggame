@@ -3,11 +3,12 @@ const router = express.Router();
 const User = require('../models/User');
 const Message = require('../models/Message');
 const { protect } = require('../middleware/auth');
+const { socialLimiter } = require('../middleware/rateLimiter');
 
 // @route   POST /api/social/friend-request
 // @desc    Send friend request
 // @access  Private
-router.post('/friend-request', protect, async (req, res) => {
+router.post('/friend-request', protect, socialLimiter, async (req, res) => {
   try {
     const { friendId } = req.body;
 
@@ -119,7 +120,7 @@ router.get('/friends', protect, async (req, res) => {
 // @route   POST /api/social/messages
 // @desc    Send a message
 // @access  Private
-router.post('/messages', protect, async (req, res) => {
+router.post('/messages', protect, socialLimiter, async (req, res) => {
   try {
     const { receiverId, content } = req.body;
 
