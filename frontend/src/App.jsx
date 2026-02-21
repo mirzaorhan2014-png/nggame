@@ -9,6 +9,9 @@ import ShooterGame from './games/ShooterGame';
 import Store from './pages/Store';
 import Leaderboard from './pages/Leaderboard';
 import AICreator from './pages/AICreator';
+import Tournaments from './pages/Tournaments';
+import Clans from './pages/Clans';
+import Social from './pages/Social';
 import './styles/global.css';
 
 const ProtectedRoute = ({ children }) => {
@@ -41,6 +44,9 @@ function AppRoutes() {
       <Route path="/store" element={<ProtectedRoute><Store /></ProtectedRoute>} />
       <Route path="/leaderboard" element={<ProtectedRoute><Leaderboard /></ProtectedRoute>} />
       <Route path="/ai-creator" element={<ProtectedRoute><AICreator /></ProtectedRoute>} />
+      <Route path="/tournaments" element={<ProtectedRoute><Tournaments /></ProtectedRoute>} />
+      <Route path="/clans" element={<ProtectedRoute><Clans /></ProtectedRoute>} />
+      <Route path="/social" element={<ProtectedRoute><Social /></ProtectedRoute>} />
       <Route path="/" element={<Navigate to="/auth" />} />
     </Routes>
   );
