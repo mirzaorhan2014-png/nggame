@@ -6,6 +6,9 @@ import Auth from './pages/Auth';
 import Dashboard from './pages/Dashboard';
 import GamesList from './pages/GamesList';
 import ShooterGame from './games/ShooterGame';
+import Store from './pages/Store';
+import Leaderboard from './pages/Leaderboard';
+import AICreator from './pages/AICreator';
 import './styles/global.css';
 
 const ProtectedRoute = ({ children }) => {
@@ -35,6 +38,9 @@ function AppRoutes() {
       <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/games" element={<ProtectedRoute><GamesList /></ProtectedRoute>} />
       <Route path="/games/shooter" element={<ProtectedRoute><ShooterGame /></ProtectedRoute>} />
+      <Route path="/store" element={<ProtectedRoute><Store /></ProtectedRoute>} />
+      <Route path="/leaderboard" element={<ProtectedRoute><Leaderboard /></ProtectedRoute>} />
+      <Route path="/ai-creator" element={<ProtectedRoute><AICreator /></ProtectedRoute>} />
       <Route path="/" element={<Navigate to="/auth" />} />
     </Routes>
   );
