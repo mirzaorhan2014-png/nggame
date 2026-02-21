@@ -1,0 +1,80 @@
+.games-page {
+  min-height: 100vh;
+  background: var(--dark);
+  padding-bottom: 50px;
+}
+
+.games-header {
+  text-align: center;
+  padding: 50px 20px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.games-header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.games-header p {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
+.games-grid {
+  animation: fadeIn 0.7s ease-out 0.2s both;
+}
+
+.game-card {
+  padding: 30px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.game-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 40px rgba(0, 255, 255, 0.3);
+}
+
+.game-icon {
+  font-size: 4rem;
+  margin-bottom: 10px;
+}
+
+.game-card h3 {
+  font-size: 1.3rem;
+  color: var(--primary);
+}
+
+.game-category {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.game-players {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.game-card .btn {
+  margin-top: auto;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: var(--primary);
+}

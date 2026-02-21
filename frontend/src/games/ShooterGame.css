@@ -1,0 +1,136 @@
+.shooter-game {
+  min-height: 100vh;
+  background: var(--dark);
+  padding: 20px;
+}
+
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  margin-bottom: 30px;
+}
+
+.back-btn {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.back-btn:hover {
+  color: var(--primary);
+}
+
+.game-header h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.game-stats {
+  display: flex;
+  gap: 30px;
+}
+
+.game-stats span {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.game-menu {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 60px;
+  text-align: center;
+}
+
+.game-menu h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: var(--primary);
+}
+
+.mode-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mode-buttons .btn {
+  font-size: 1.2rem;
+  padding: 20px;
+}
+
+.room-info {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+}
+
+.room-info strong {
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+.game-canvas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.game-canvas {
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+  cursor: crosshair;
+}
+
+.game-controls {
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.game-controls p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1400px) {
+  .game-canvas {
+    width: 90%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .game-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .game-stats {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .game-menu {
+    padding: 40px 20px;
+  }
+
+  .game-controls {
+    flex-direction: column;
+    text-align: center;
+  }
+}
