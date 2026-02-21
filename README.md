@@ -1,0 +1,2 @@
+# nggame
+harika bir site 🎉🎉
